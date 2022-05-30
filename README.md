@@ -2,8 +2,8 @@
 A simple password generator written  in python
 
 #### To run GUI in linux
-Ubuntu:
+Ubuntu :
 ```sudo apt install python3-tk```
 
-Arch:
+Arch :
 ```bashsudo pacman -S tk```
