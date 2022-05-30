@@ -6,8 +6,13 @@ window = Tk()
 app_width = 625
 app_height = 400
 
-window.geometry(f'{app_width}x{app_height}')
-window.title("PasswordMaker v0.1")
+screen_width = window.winfo_screenwidth()
+screen_height = window.winfo_screenheight() 
+x = (screen_width/2) - (app_width/2)
+y = (screen_height/2) - (app_height/2)
+
+window.geometry(f"{app_width}x{app_height}+{int(x)}+{int(y)}")
+window.title("PasswordMaker v1.0")
 window.minsize(app_width,app_height)
 window.maxsize(app_width,app_height)
 
@@ -67,7 +72,7 @@ PLength = Entry(    window,
 PLength.pack()
 
 submit_button = Button( window,
-                        text="submit",
+                        text="Generate",
                         command=SubButton,
                         font=(myfont,0)
                         )
