@@ -2,10 +2,14 @@ from tkinter import *
 import random
 
 window = Tk()
-window.geometry("625x400")
+
+app_width = 625
+app_height = 400
+
+window.geometry(f'{app_width}x{app_height}')
 window.title("PasswordMaker v0.1")
-window.minsize(625,400)
-window.maxsize(625,400)
+window.minsize(app_width,app_height)
+window.maxsize(app_width,app_height)
 
 
 lower_case = "abcdefghijklmnopqrstuvwxyz"
@@ -17,11 +21,22 @@ symbols = "`~!@#$%^&*()-_=+[{]}\|;:,<.>/?"
 myfont = 'CaskaydiaCove Nerd Font'
 button_fsize = 15
 
-def main(use_for, PassLen=0):
-    passwd = "".join(random.sample(use_for, int(PassLen)))
+def main(use_for, PassLen):
+    passwd = "".join(random.sample(use_for, PassLen))
     # print("\nThe generated password: ", passwd)
     showPasswd.delete(0,END)
     showPasswd.insert(0, passwd)
+
+def doubleCheck(use_for, myPassLen):
+    if myPassLen == "":
+        showMsg.config(text="Plz enter a length")
+    if not use_for:
+        showMsg.config(text="Plz choose an option")
+    elif int(myPassLen) < 1 or int(myPassLen) > 50:
+        showMsg.config(text="passwd range is between 1 - 50") 
+    else:
+        showMsg.config(text="")
+        main(use_for, int(myPassLen))
 
 def CheckForCheck(myPassLen):
     use_for = ""
@@ -33,7 +48,7 @@ def CheckForCheck(myPassLen):
         use_for = use_for + numbers
     if d.get() == 1:
         use_for = use_for + symbols
-    main(use_for, myPassLen)
+    doubleCheck(use_for, myPassLen)
 
 def SubButton():
     myPassLen = PLength.get()
@@ -95,5 +110,8 @@ sym_button.place(x=0,y=150)
 
 showPasswd = Entry(window,font=(myfont,15), width=50)
 showPasswd.place(x=10,y=250)
+
+showMsg = Label(window,font=(myfont,15),fg="red")
+showMsg.place(x=10,y=300)
 
 window.mainloop()
