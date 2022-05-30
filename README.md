@@ -6,4 +6,4 @@ Ubuntu :
 ```sudo apt install python3-tk```
 
 Arch :
-```bashsudo pacman -S tk```
+```sudo pacman -S tk```
